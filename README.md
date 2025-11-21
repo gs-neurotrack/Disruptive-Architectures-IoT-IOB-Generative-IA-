@@ -261,11 +261,4 @@ O WorkSense demonstra uma solução IoT **simples, funcional e alinhada ao Futur
 - Envio MQTT  
 - Processamento no Node-RED  
 - Dashboard em tempo real  
-
-Atende todos os requisitos da entrega:
-
-✔ Protótipo funcional  
-✔ Documentação completa  
-✔ Fluxo Node-RED explicado  
-✔ Dashboard funcionando  
-✔ Código limpo  
+ 
