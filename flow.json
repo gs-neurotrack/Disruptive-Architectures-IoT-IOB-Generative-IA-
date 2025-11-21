@@ -1,0 +1,204 @@
+[
+    {
+        "id": "flow1",
+        "type": "tab",
+        "label": "WorkSense Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "mqttIn1",
+        "type": "mqtt in",
+        "z": "flow1",
+        "name": "WorkSense MQTT",
+        "topic": "workSense/data",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "mqttBroker1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "json1"
+            ]
+        ]
+    },
+    {
+        "id": "json1",
+        "type": "json",
+        "z": "flow1",
+        "name": "Texto → JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 580,
+        "y": 100,
+        "wires": [
+            [
+                "funcPresence",
+                "gaugeTemp",
+                "4a237cd0ee867da0"
+            ]
+        ]
+    },
+    {
+        "id": "gaugeTemp",
+        "type": "ui_gauge",
+        "z": "flow1",
+        "name": "Temperatura (°C)",
+        "group": "uiGroup1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura (°C)",
+        "label": "°C",
+        "format": "{{msg.payload.temperature}}",
+        "min": 0,
+        "max": "50",
+        "x": 880,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "funcPresence",
+        "type": "function",
+        "z": "flow1",
+        "name": "Formata Presença",
+        "func": "var presence = msg.payload.presence || 0;\n\nmsg.payload = presence === 1 ? \"Presença detectada\" : \"Sem presença\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 120,
+        "wires": [
+            [
+                "textPresence"
+            ]
+        ]
+    },
+    {
+        "id": "textPresence",
+        "type": "ui_text",
+        "z": "flow1",
+        "group": "uiGroup1",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Presença",
+        "label": "Presença no ambiente",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1110,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "chartTemp",
+        "type": "ui_chart",
+        "z": "flow1",
+        "name": "Histórico de Temperatura",
+        "group": "uiGroup1",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Temperatura ao longo do tempo",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Sem dados ainda",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "50",
+        "removeOlder": "60",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e"
+        ],
+        "outputs": 1,
+        "x": 890,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4a237cd0ee867da0",
+        "type": "function",
+        "z": "flow1",
+        "name": "Só Temperatura",
+        "func": "// Recebe { temperature: X, presence: Y }\n// Devolve só a temperatura como valor numérico para o gráfico\nmsg.payload = msg.payload.temperature;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 180,
+        "wires": [
+            [
+                "chartTemp"
+            ]
+        ]
+    },
+    {
+        "id": "mqttBroker1",
+        "type": "mqtt-broker",
+        "name": "Public MQTT Broker",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "uiGroup1",
+        "type": "ui_group",
+        "name": "Ambiente de Trabalho",
+        "tab": "uiTab1",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "uiTab1",
+        "type": "ui_tab",
+        "name": "WorkSense Dashboard",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "75d6909653972ad3",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
