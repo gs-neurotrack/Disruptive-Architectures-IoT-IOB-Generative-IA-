@@ -262,3 +262,6 @@ O WorkSense demonstra uma solução IoT **simples, funcional e alinhada ao Futur
 - Processamento no Node-RED  
 - Dashboard em tempo real  
  
+
+## Link do Projeto no Wokwi
+**https://wokwi.com/projects/448259728725063681**
