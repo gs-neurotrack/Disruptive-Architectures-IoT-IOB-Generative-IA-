@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "author": "WorkSense IoT",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp32", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "temp1",
+      "top": 117.8,
+      "left": 201,
+      "attrs": { "temperature": "25" }
+    },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": 260, "left": 260, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 342, "left": 42.2, "attrs": { "color": "green" } }
+  ],
+  "connections": [
+    [ "temp1:OUT", "esp32:35", "green", [ "h19.2", "v-86.5" ] ],
+    [ "temp1:VCC", "esp32:3V3", "red", [ "h28.8", "v-163.2", "h-360.19" ] ],
+    [ "temp1:GND", "esp32:GND", "black", [ "h-80" ] ],
+    [ "pir1:OUT", "esp32:5", "green", [ "v-20" ] ],
+    [ "pir1:VCC", "esp32:5V", "red", [ "h-90" ] ],
+    [ "pir1:GND", "esp32:GND", "black", [ "h-90" ] ],
+    [ "led1:A", "esp32:2", "green", [ "v-20" ] ],
+    [ "led1:C", "esp32:GND", "black", [ "v10" ] ],
+    [ "pir1:GND", "esp32:GND.3", "black", [ "v0" ] ],
+    [ "temp1:GND", "esp32:GND.3", "black", [ "h0" ] ],
+    [ "led1:C", "esp32:GND.3", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
