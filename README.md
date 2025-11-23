@@ -5,6 +5,16 @@ A solução demonstra como sensores podem ser utilizados para promover **bem-est
 
 ---
 
+## 🤝 Integrantes do Projeto
+
+| Nome                                  | Função no Projeto          | LinkedIn | GitHub |
+|---------------------------------------|----------------------------|----------|--------|
+| Cleyton Enrike de Oliveira            | Desenvolvedor .NET & IOT   | [LinkedIn](https://www.linkedin.com/in/cleyton-enrike-de-oliveira99) | [@Cleytonrik99](https://github.com/Cleytonrik99) |
+| Matheus Henrique Nascimento de Freitas| Desenvolvedor Mobile & DBA | [LinkedIn](https://www.linkedin.com/in/matheus-henrique-freitas)     | [@MatheusHenriqueNF](https://github.com/MatheusHenriqueNF) |
+| Pedro Henrique Sena                   | Desenvolvedor Java & DevOps| [LinkedIn](https://www.linkedin.com/in/pedro-henrique-sena)          | [@devpedrosena1](https://github.com/devpedrosena1) |
+
+---
+
 # 📌 1. Descrição Completa da Solução
 
 O WorkSense combina **ESP32 + sensores físicos + MQTT + Node-RED** para criar um ambiente de trabalho inteligente.
